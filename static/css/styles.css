@@ -1,15 +1,16 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 html {
   background-color: black;
+  font-size: 16px;
 }
 
 body {
   margin: 0;
 }
 
-* {
+*:not(.fas) {
   color: white;
-  font-family: "Nunito";
+  font-family: "Roboto";
 }
 
 #main_header {
@@ -40,5 +41,361 @@ body {
   -o-object-fit: cover;
      object-fit: cover;
   top: 0px;
+}
+
+main {
+  position: absolute;
+  width: 100%;
+  top: 130px;
+}
+
+main .progress-section {
+  text-align: center;
+  width: 700px;
+  margin: 30px auto 0;
+}
+
+main .progress-section.none {
+  display: none;
+}
+
+main .progress-section .message {
+  font-size: 1.3rem;
+  margin: 15px 0;
+  display: block;
+}
+
+main .progress-section .progressbar {
+  border: 1px solid white;
+  height: 10px;
+  width: 100%;
+}
+
+main .progress-section .progressbar .progress {
+  width: 50%;
+  height: 100%;
+  background: white;
+}
+
+main .convert-section {
+  margin: 30px 0 0;
+  text-align: center;
+}
+
+main .convert-section .error {
+  display: block;
+  color: #FF4949;
+  font-size: 1rem;
+}
+
+main .convert-section .error.none {
+  display: none;
+}
+
+main .convert-section .convert {
+  background: none;
+  outline: none;
+  border: 1px solid white;
+  font-size: 1rem;
+  padding: 15px;
+  cursor: pointer;
+}
+
+main .convert-section .convert.none {
+  display: none;
+}
+
+main .convert-section .convert.state-1 {
+  opacity: 0.6;
+}
+
+main .intro {
+  text-align: center;
+}
+
+main .intro * {
+  margin: 0;
+}
+
+main .intro h1 {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+main .intro p {
+  font-size: 24px;
+  max-width: 30%;
+  margin: 20px auto 0;
+}
+
+main .input {
+  width: 700px;
+  margin: 60px auto 0;
+}
+
+main .input input {
+  width: 100%;
+  border: 1px solid white;
+  outline: none;
+  background: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 18px;
+  padding: 15px;
+}
+
+main .input input::-webkit-input-placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+main .input input:-ms-input-placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+main .input input::-ms-input-placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+main .input input::placeholder {
+  color: white;
+  opacity: 0.5;
+}
+
+main .result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 700px;
+  margin: 30px auto 0;
+}
+
+main .result.none {
+  display: none;
+}
+
+main .result .thumbnail {
+  width: 220px;
+  height: 120px;
+}
+
+main .result .thumbnail img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main .result > .details {
+  margin-left: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .result > .details > h2 {
+  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+main .result > .details .details-1 {
+  margin-top: 5px;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+main .result > .details .details-1 * {
+  font-size: 14px;
+}
+
+main .result > .details .details-1 .last {
+  margin-left: auto;
+}
+
+main .result > .details .details-1 .last > span {
+  margin: 0 2px;
+}
+
+main .result > .details .details-2 {
+  margin-top: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+main .result > .details .details-2 > span:not(:first-child) {
+  margin: 0 10px;
+}
+
+main .result > .details .details-2 .cached.not {
+  color: #FF4949;
+}
+
+main .result > .details .details-2 * {
+  font-size: 14px;
+}
+
+main .result > .details .download-section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .result > .details .download-section .download {
+  background: none;
+  border: 1px solid white;
+  padding: 9px 16px;
+  font-size: 14px;
+  outline: none;
+}
+
+main .result > .details .download-section .details {
+  margin-left: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+main .result > .details .download-section .details > span {
+  font-size: 12px;
+}
+
+@media only screen and (max-width: 1280px) {
+  main .intro p {
+    max-width: 80%;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  html {
+    font-size: 15px;
+  }
+  main .intro h1 {
+    font-size: 26px;
+  }
+  main .intro p {
+    font-size: 18px;
+    margin: 10px auto 0;
+  }
+  main .input {
+    width: 500px;
+  }
+  main .input input {
+    font-size: 14px;
+    padding: 12px;
+  }
+  main .result {
+    width: 500px;
+  }
+  main .result .thumbnail {
+    width: 160px;
+    height: 100px;
+  }
+  main .result > .details {
+    margin-left: 10px;
+  }
+  main .result > .details > h2 {
+    font-size: 13px;
+  }
+  main .result > .details .details-1, main .result > .details .details-2 {
+    margin-top: 3px;
+  }
+  main .result > .details .details-1 *, main .result > .details .details-2 * {
+    font-size: 11px;
+  }
+  main .result > .details .download-section .download {
+    padding: 7px 12px;
+    font-size: 12px;
+  }
+  main .result > .details .download-section .details > span {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  html {
+    font-size: 13px;
+  }
+  main .intro h1 {
+    font-size: 21px;
+  }
+  main .intro p {
+    font-size: 15px;
+    margin: 5px auto 0;
+  }
+  main .input {
+    width: 350px;
+    margin: 40px auto 0;
+  }
+  main .input input {
+    font-size: 13px;
+    padding: 11px;
+  }
+  main .result {
+    margin: 30px auto;
+    width: 350px;
+    position: relative;
+  }
+  main .result .thumbnail {
+    width: 130px;
+    height: 70px;
+  }
+  main .result .download-section {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 80px;
+  }
+  main .result > .details h2 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 180px;
+  }
+  main .result .details-1 .last {
+    position: absolute;
+    top: 55px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  html {
+    font-size: 11.5px;
+  }
+  main .intro h1 {
+    font-size: 16px;
+  }
+  main .intro p {
+    font-size: 13px;
+  }
+  main .input {
+    width: 97%;
+  }
+  main .input input {
+    font-size: 12px;
+  }
+  main .result {
+    margin: 30px auto;
+    width: 97%;
+  }
 }
 /*# sourceMappingURL=styles.css.map */

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fa/css/all.css') }}">
     <title>Youtube to Mp3</title>
 </head>
 <body>
@@ -19,19 +20,56 @@
     <main>
         <div class="intro">
             <h1>Welcome to Aural’s Youtube to Mp3 converter</h1>
-            <p>To convert a youtube video to an mp3 file simply paste the link below.</p>
+            <p>To convert a youtube video to an mp3 file simply paste the youtube link below.</p>
         </div>
         <div class="input">
-            <input type="text">
+            <input type="text" placeholder="https://www.youtube.com/watch?v=dQw4w9WgXcQ" id="main_input">
         </div>
-        <div class="result">
+        <div class="progress-section none">
+            <div class="progressbar">
+                <div class="progress"></div>
+            </div>
+            <span class="message">Converting...</span>
+        </div>
+        <div class="convert-section">
+            <span class="error none">Invalid youtube link</span>
+            <button class="convert none">Convert to Mp3</button>
+        </div>
+        <div class="result none">
             <div class="thumbnail">
-                <img src="" alt="Thumbnail">
+                <img src="https://external-preview.redd.it/aas49JJr55QJJC0F8-H8jNAKReU1c6lGy04xqOPDlbo.jpg?width=640&height=385&crop=smart&auto=webp&s=e4bfd7f74866d479d039d84abdd0f4cb67c60065" alt="Thumbnail">
             </div>
             <div class="details">
-
+                <h2>The title of the video goes in here</h2>
+                <div class="details-1">
+                    <span class="views">420M Views</span>
+                    <div class="last">
+                        <span class="likes">
+                            128k <i class="fas fa-thumbs-up"></i>
+                        </span>
+                        <span class="seperator">|</span>
+                        <span class="dislikes">
+                            64k <i class="fas fa-thumbs-down"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="details-2">
+                    <span class="downloads">10 Downloads</span>
+                    <span class="cached not">Not Cached</span>
+                </div>
+                <div class="download-section">
+                    <button class="download">Download Mp3</button>
+                    <div class="details">
+                        <span class="last-download">Last download 2 hours ago</span>
+                        <span class="uploaded">Uploaded on Jul 12, 2019</span>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js'></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>

@@ -1,16 +1,17 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito:200,200italic,300,300italic,regular,italic,600,600italic,700,700italic,800,800italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,100italic,300,300italic,regular,italic,500,500italic,700,700italic,900,900italic);
 
 html {
     background-color: black;
+    font-size: 16px;
 }
 
 body {
     margin: 0;
 }
 
-* {
+*:not(.fas) {
     color: white;
-    font-family: "Nunito";
+    font-family: "Roboto";
 }
 
 #main_header {
@@ -38,4 +39,353 @@ body {
     height: 700px;
     object-fit: cover;
     top: 0px;
+}
+
+main {
+    position: absolute;
+    width: 100%;
+    top: 130px;
+
+    .progress-section {
+        text-align: center;
+
+        width: 700px;
+        margin: 30px auto 0;
+
+        &.none {
+            display: none;
+        }
+
+        .message {
+            font-size: 1.3rem;
+            margin: 15px 0;
+            display: block;
+        }
+
+        .progressbar {
+            border: 1px solid white;
+            height: 10px;
+            width: 100%;
+
+            .progress {
+                width: 50%;
+                height: 100%;
+                background: white;
+            }
+        }
+    }
+
+    .convert-section {
+        margin: 30px 0 0;
+        text-align: center;
+
+        .error {
+            display: block;
+            color: #FF4949;
+            font-size: 1rem;
+
+            &.none {
+                display: none;
+            }
+        }
+
+        .convert {
+            background: none;
+            outline: none;
+            border: 1px solid white;
+            font-size: 1rem;
+            padding: 15px;
+
+            &.none {
+                display: none;   
+            }
+
+            &.state-1 {
+                opacity: 0.6;
+            }
+            
+            cursor: pointer;
+        }
+    }
+
+    .intro {
+        text-align: center;
+        * {
+            margin: 0;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: 500;
+        }
+        p {
+            font-size: 24px;
+            max-width: 30%;
+            margin: 20px auto 0;
+        }
+    }
+    .input {
+        width: 700px;
+        margin: 60px auto 0;
+
+        input {
+            width: 100%;
+            border: 1px solid white;
+
+            outline: none;
+            background: none;
+
+            box-sizing: border-box;
+
+            font-size: 18px;
+            padding: 15px;
+
+            &::placeholder {
+                color: white;
+                opacity: 0.5;
+            }
+        }
+    }
+    .result {
+        display: flex;
+
+        width: 700px;
+        margin: 30px auto 0;
+
+        &.none {
+            display: none;
+        }
+
+        .thumbnail {
+            width: 220px;
+            height: 120px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+        > .details {
+            margin-left: 15px;
+            display: flex;
+            flex-direction: column;
+
+            > h2 {
+                margin: 0;
+                
+                font-weight: 500;
+                font-size: 18px;
+            }
+
+            .details-1 {
+                margin-top: 5px;
+                width: 100%;
+
+                display: flex;
+
+                * {
+                    font-size: 14px;
+                }
+
+                .last {
+                    margin-left: auto;
+                    > span {
+                        margin: 0 2px;
+                    }
+                }
+            }
+
+            .details-2 {
+                margin-top: 5px;
+                display: flex;
+
+                > span:not(:first-child) {
+                    margin: 0 10px;
+                }
+
+                .cached.not {
+                    color: #FF4949;
+                }
+
+                * {
+                    font-size: 14px;
+                }
+                flex-grow: 1;
+            }
+            
+            .download-section {
+                display: flex;
+                align-items: center;
+
+                .download {
+                    background: none;
+                    border: 1px solid white;
+                    padding: 9px 16px;
+                    font-size: 14px;
+                    outline: none;
+                }
+
+                .details {
+                    margin-left: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    > span {
+                        font-size: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    main {
+        .intro {
+            p {
+                max-width: 80%;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 770px) {
+    html {
+        font-size: 15px;
+    }
+    main {
+        .intro {
+            h1 {
+                font-size: 26px;
+            }
+            p {
+                font-size: 18px;
+                margin: 10px auto 0;
+            }
+        }
+        .input {
+            width: 500px;
+            input {
+                font-size: 14px;
+                padding: 12px;
+            }
+        }
+
+        .result {
+            width: 500px;
+            
+            .thumbnail {
+                width: 160px;
+                height: 100px;
+            }
+
+            > .details {
+                margin-left: 10px;
+                > h2 {
+                    font-size: 13px;
+                }
+
+                .details-1, .details-2 {
+                    * {
+                        font-size: 11px;
+                    }
+                    margin-top: 3px;
+                }
+                .download-section {
+                    .download {
+                        padding: 7px 12px;
+                        font-size: 12px;
+                    }
+                    .details {
+                        > span {
+                            font-size: 11px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    html {
+        font-size: 13px;
+    }
+    main {
+        .intro {
+            h1 {
+                font-size: 21px;
+            }
+            p {
+                font-size: 15px;
+                margin: 5px auto 0;
+            }
+        }
+        .input {
+            width: 350px;
+            margin: 40px auto 0;
+            input {
+                font-size: 13px;
+                padding: 11px;
+            }
+        }
+        .result {
+            margin: 30px auto;
+            width: 350px;
+            position: relative;
+            
+            .thumbnail {
+                width: 130px;
+                height: 70px;
+            }
+
+            .download-section {
+                position: absolute;
+                width: 100%;
+                left: 0;
+                top: 80px;
+            }
+
+            > .details {
+                h2 {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    max-width: 180px;
+                }
+            }
+
+            .details-1 {
+                .last {
+                    position: absolute;
+                    top: 55px;
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    html {
+        font-size: 11.5px;
+    }
+    main {
+        .intro {
+            h1 {
+                font-size: 16px;
+            }
+            p {
+                font-size: 13px;
+            }
+        }
+        .input {
+            width: 97%;
+            input {
+                font-size: 12px;
+            }
+        }
+        .result {
+            margin: 30px auto;
+            width: 97%;
+        }
+    }
 }

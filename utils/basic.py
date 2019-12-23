@@ -1,7 +1,10 @@
+from flask import jsonify
+
 import json
 import os
 import random
 import string
+import time
 
 osjoin = os.path.join
 cwd = os.getcwd()
@@ -9,6 +12,19 @@ cwd = os.getcwd()
 
 def createToken(length=10):
     return "".join(random.choices(string.ascii_letters + string.digits, k=length))
+
+
+def makeResponse(extra=None, status="ok", code=200):
+    response = {
+        "status": status,
+        "code": code,
+        "timestamp": int(time.time())
+    }
+
+    if isinstance(extra, dict):
+        response = {**extra, **response}
+    
+    return jsonify(response), code
 
 
 def join(path, cwd=cwd):
