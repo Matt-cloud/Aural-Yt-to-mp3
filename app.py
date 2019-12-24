@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, send_file
 from flask_socketio import SocketIO
-from utils.basic import settings, join, createToken, makeResponse, readJson, writeJson
+from utils.basic import settings, join, createToken, makeResponse, readJson, writeJson, numerize
 
 import json
 import os
@@ -113,10 +113,10 @@ def download():
                     socket.emit("convert_complete", {
                         "thumbnail": info['thumbnail'],
                         "title": info['title'],
-                        "views": info['view_count'],
-                        "likes": info['like_count'],
-                        "dislikes": info['dislike_count'],
-                        "downloads": downloads,
+                        "views": numerize(info['view_count']),
+                        "likes": numerize(info['like_count']),
+                        "dislikes": numerize(info['dislike_count']),
+                        "downloads": numerize(downloads),
                         "last_download": timestamp,
                         "upload_date": info['upload_date'],
                         "cached": cached,
