@@ -71,6 +71,8 @@ socket.on("convert_complete", function (data) {
     $(".convert-section .convert").addClass("none")
     $(".convert-section .convert").text("Convert to Mp3")
 
+    let last_download = moment(data['last_download']).fromNow()
+
     $(".result .thumbnail img").attr("src", data['thumbnail'])
     $(".result .details > h2").text(data['title'])
     $(".result .details-1 .views").text(data['views'] + " Views")
@@ -78,7 +80,7 @@ socket.on("convert_complete", function (data) {
     $(".result .dislikes .amount").text(data['dislikes'])
     $(".result .downloads").text(data['downloads'] + " Downloads")
     $(".result .cached").text(data['cached'])
-    $(".result .download-section .last-download").text(data['last_download'])
+    $(".result .download-section .last-download").text(last_download)
     $(".result .download-section .uploaded").text(data['upload_date'])
     $(".result .download-section .download").attr("data-link", data['download_url'])
 
