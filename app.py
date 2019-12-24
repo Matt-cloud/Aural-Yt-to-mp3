@@ -8,6 +8,7 @@ import youtube_dl
 import requests
 import glob
 import time 
+import threading
     
 
 app = Flask(__name__)
@@ -15,6 +16,7 @@ main_api_token = createToken(10)
 socket = SocketIO(app)
 yt_video = "https://youtube.com/watch?v="
 downloads_folder = join("downloads")
+max_cache_time = 60 #5400
 
 @socket.on("convertRequest")
 def on_convertRequest(data):
@@ -25,7 +27,9 @@ def on_convertRequest(data):
 @app.route("/api/v1/get_song")
 def get_song():
     _id = request.args.get("id")
-    return send_file(join(f"{downloads_folder}/{_id}.mp3"), as_attachment=True)
+    title = request.args.get("title")
+
+    return send_file(join(f"{downloads_folder}/{_id}.mp3"), attachment_filename=title + ".mp3", as_attachment=True)
 
 @app.route("/api/v1/download", methods=["POST"])
 def download():
@@ -79,8 +83,9 @@ def download():
                     
                     database = readJson(f"{downloads_folder}/database.json")
 
-                    cached = True
                     createData = True
+                    cached = True
+
                     if glob.glob(join(f"{downloads_folder}/{info['id']}.*")):
                         print("File exists")
                         for i, item in enumerate(database['data']):
@@ -94,17 +99,18 @@ def download():
                                 createData = False
 
                     if createData:
-                        cached = False
                         ydl.download([url])
                         data = {
                             "id": info['id'],
                             "title": info['title'],
                             "timestamp": int(time.time()),
-                            "downloads": 0
+                            "downloads": 1,
+                            "cached": True
                         }
 
                         downloads = data['downloads']
                         timestamp = data['timestamp']
+                        cached = False
 
                         database['data'].append(data)
 
@@ -120,7 +126,7 @@ def download():
                         "last_download": timestamp,
                         "upload_date": info['upload_date'],
                         "cached": cached,
-                        "download_url": request.url_root + f"api/v1/get_song?id={info['id']}"
+                        "download_url": request.url_root + f"api/v1/get_song?id={info['id']}&title={info['title']}"
                     })
 
                 except youtube_dl.utils.DownloadError:
@@ -139,7 +145,29 @@ def download():
 def index():
     return render_template("index.html")
 
+def handleCachedSongs():
+    while True:
+        database = readJson(f"{downloads_folder}/database.json")
+
+        for i, item in enumerate(database['data']):
+            now = int(time.time())
+            item_time = item['timestamp']
+            seconds_passed = now - item_time
+            
+            if seconds_passed > max_cache_time:
+                song_path = join(f"{downloads_folder}/{item['id']}.mp3")
+                if os.path.exists(song_path):
+                    os.remove(song_path)
+
+                database['data'][:] = [d for d in database['data'] if d.get("id") != item['id']]
+                writeJson(f"{downloads_folder}/database.json", database)
+
+                print(f"{item['id']} Exceeded max cache time, deleted.")
+
+        time.sleep(10)
+
 def main():
+    threading.Thread(target=handleCachedSongs, daemon=True).start()
     socket.run(app, **settings()["flask_options"])
 
 if __name__ == "__main__":

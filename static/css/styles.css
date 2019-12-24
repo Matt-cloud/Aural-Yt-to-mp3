@@ -239,8 +239,12 @@ main .result > .details .details-2 > span:not(:first-child) {
   margin: 0 10px;
 }
 
+main .result > .details .details-2 .cached {
+  color: #25ff64;
+}
+
 main .result > .details .details-2 .cached.not {
-  color: #FF4949;
+  color: #FF4949 !important;
 }
 
 main .result > .details .details-2 * {

@@ -44,6 +44,10 @@ $("main .convert-section .convert").click(function () {
     }
 })
 
+$(".result .download-section .download").click(function () {
+    window.location.href = $(this).attr("data-link")
+})
+
 socket.on("convert_progress", function (data) {
     if (!readytoconvert) {
         $("main .convert-section .convert").addClass("none")
@@ -71,7 +75,16 @@ socket.on("convert_complete", function (data) {
     $(".convert-section .convert").addClass("none")
     $(".convert-section .convert").text("Convert to Mp3")
 
-    let last_download = moment(data['last_download']).fromNow()
+    let last_download = moment(Date(data['last_download'])).fromNow()
+    let cached = "Not Cached"
+
+    $(".result .cached").addClass("not")
+
+    if (data['cached']) {
+        cached = "Cached"
+
+        $(".result .cached").removeClass("not")
+    }
 
     $(".result .thumbnail img").attr("src", data['thumbnail'])
     $(".result .details > h2").text(data['title'])
@@ -79,9 +92,9 @@ socket.on("convert_complete", function (data) {
     $(".result .likes .amount").text(data['likes'])
     $(".result .dislikes .amount").text(data['dislikes'])
     $(".result .downloads").text(data['downloads'] + " Downloads")
-    $(".result .cached").text(data['cached'])
-    $(".result .download-section .last-download").text(last_download)
-    $(".result .download-section .uploaded").text(data['upload_date'])
+    $(".result .cached").text(cached)
+    $(".result .download-section .last-download").text("Last download " + last_download)
+    $(".result .download-section .uploaded").text("Uploaded on " + moment(data['upload_date']).format("MMM Do YY"))
     $(".result .download-section .download").attr("data-link", data['download_url'])
 
 })

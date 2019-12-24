@@ -203,8 +203,12 @@ main {
                     margin: 0 10px;
                 }
 
-                .cached.not {
-                    color: #FF4949;
+                .cached {
+                    color: #25ff64;
+
+                    &.not {
+                        color: #FF4949 !important;
+                    }
                 }
 
                 * {
