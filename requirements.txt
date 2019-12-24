@@ -1,0 +1,6 @@
+flask
+flask-socketio
+requests
+pylint
+autopep8    
+youtube_dl
