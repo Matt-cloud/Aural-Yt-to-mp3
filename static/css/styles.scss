@@ -57,7 +57,7 @@ main {
         }
 
         .message {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             margin: 15px 0;
             display: block;
         }
@@ -256,7 +256,11 @@ main {
     html {
         font-size: 15px;
     }
+
     main {
+        .progress-section {
+            width: 500px;
+        }
         .intro {
             h1 {
                 font-size: 26px;
@@ -315,6 +319,17 @@ main {
         font-size: 13px;
     }
     main {
+        .progress-section {
+            width: 350px;
+            .progressbar {
+                height: 7px;
+            }
+        }
+        .convert-section {
+            .convert {
+                padding: 10px;
+            }
+        }
         .intro {
             h1 {
                 font-size: 21px;

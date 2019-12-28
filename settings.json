@@ -1,8 +1,8 @@
 {
     "flask_options": {
         "port": 5000,
-        "host": "192.168.1.6",
-        "debug": false,
+        "host": "localhost",
+        "debug": true,
         "use_reloader": false
     }
 }

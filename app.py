@@ -127,7 +127,7 @@ def download():
                         "upload_date": info['upload_date'],
                         "cached": cached,
                         "download_url": request.url_root + f"api/v1/get_song?id={info['id']}&title={info['title']}"
-                    })
+                    }, room=sid)
 
                 except youtube_dl.utils.DownloadError:
                     return makeResponse({
