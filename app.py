@@ -16,7 +16,7 @@ main_api_token = createToken(10)
 socket = SocketIO(app)
 yt_video = "https://youtube.com/watch?v="
 downloads_folder = join("downloads")
-max_cache_time = 60 #5400
+max_cache_time = 5400
 
 @socket.on("convertRequest")
 def on_convertRequest(data):
