@@ -45,7 +45,14 @@ $("main .convert-section .convert").click(function () {
 })
 
 $(".result .download-section .download").click(function () {
-    window.location.href = $(this).attr("data-link")
+    let video_id = $(".result").attr('data-video-id')
+    socket.emit("update_item_database", {
+        "video_id": video_id
+    })
+    window.open(
+        $(this).attr('data-link'),
+        '_blank'
+    )
 })
 
 socket.on("convert_progress", function (data) {
@@ -74,9 +81,17 @@ socket.on("convert_complete", function (data) {
     $(".result").removeClass("none")
     $(".convert-section .convert").addClass("none")
     $(".convert-section .convert").text("Convert to Mp3")
+    $("main .convert-section .convert").removeClass("state-1")
+    readytoconvert = true
 
-    let last_download = moment(Date(data['last_download'])).fromNow()
+    var last_download
     let cached = "Not Cached"
+
+    if (data['last_download'] == 0) {
+        last_download = "None"
+    } else {
+        last_download = moment(Date(data['last_download'])).fromNow()
+    }
 
     $(".result .cached").addClass("not")
 
@@ -86,6 +101,7 @@ socket.on("convert_complete", function (data) {
         $(".result .cached").removeClass("not")
     }
 
+    $(".result").attr('data-video-id', data['video_id'])
     $(".result .thumbnail img").attr("src", data['thumbnail'])
     $(".result .details > h2").text(data['title'])
     $(".result .details-1 .views").text(data['views'] + " Views")
@@ -97,4 +113,15 @@ socket.on("convert_complete", function (data) {
     $(".result .download-section .uploaded").text("Uploaded on " + moment(data['upload_date']).format("MMM Do YY"))
     $(".result .download-section .download").attr("data-link", data['download_url'])
 
+})
+
+socket.on("update_results", function (data) {
+    let result_id = $(".result").attr('data-video-id')
+
+    if (result_id == data['id']) {
+        let last_download = moment(Date(data['last_download'])).fromNow()
+
+        $(".result .downloads").text(data['downloads'] + " Downloads")
+        $(".result .download-section .last-download").text("Last download " + last_download)
+    }
 })

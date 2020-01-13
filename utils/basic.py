@@ -32,6 +32,10 @@ def makeResponse(extra=None, status="ok", code=200):
 def join(path, cwd=cwd):
     # Just makes it so that you can do "root/folder/file" instead of join("root", "folder", "file")
     # Idk its faster
+
+    if isinstance(path, list):
+        path = "/".join(path)
+
     if not "/" in path:
         if not cwd:
             return osjoin(path)

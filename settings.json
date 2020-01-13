@@ -4,5 +4,7 @@
         "host": "localhost",
         "debug": true,
         "use_reloader": false
-    }
+    },
+    "downloads_folder": ["cwd", "downloads"],
+    "database": ["cwd", "downloads", "database.json"]
 }
